@@ -141,44 +141,110 @@ var mobileChart = new Chart(mobileUsers, {
 
 //New Members Widget
 
-var newMembers = document.getElementById("new-member-list");
+var newMemberName = document.getElementById("new-member-list").querySelectorAll(".member-name");
+var newMemberEmail = document.getElementById("new-member-list").querySelectorAll(".member-email");
+var newMemberDate = document.getElementById("new-member-list").querySelectorAll("li .member-date");
+var newMemberAvatar = document.getElementById("new-member-list").querySelectorAll("li .member-avatar");
 
 var newMemberData = [
     {"first_name": "Pete",
       "last_name": "Wrigley",
       "image": "http://www.radfaces.com/images/avatars/little-pete-wrigley.jpg",
       "email": "pete.wrigley@example.com",
-      "date": "10/15/15"}, 
+      "date": "10/15/15",
+      "activity": " posted YourApp\'s SEO tips",
+      "activity_time": "8 hours ago"}, 
     {"first_name": "Aeon",
       "last_name": "Flux",
       "image": "http://www.radfaces.com/images/avatars/aeon-flux.jpg",
       "email": "aeon.flux@example.com",
-      "date": "10/16/15"},
+      "date": "10/16/15",
+      "activity": " liked YourApp\'s SEO tips",
+      "activity_time": "6 hours ago"},
     {"first_name": "Alan",
       "last_name": "Frog",
       "image": "http://www.radfaces.com/images/avatars/alan-frog.jpg",
       "email": "alan.frog@example.com",
-      "date": "10/20/15"},
+      "date": "10/20/15",
+      "activity": " commented on YourApp\'s SEO tips",
+      "activity_time": "5 hours ago"},
     {"first_name": "Amanda",
       "last_name": "Bynes",
       "image": "http://www.radfaces.com/images/avatars/amanda-bynes.jpg",
       "email": "amanda.bynes@example.com",
-      "date": "10/21/15"}, 
+      "date": "10/21/15",
+      "activity": " liked Facebook\'s 2016 Changes",
+      "activity_time": "3 hours ago"},
     {"first_name": "April",
       "last_name": "O'Neil",
       "image": "http://www.radfaces.com/images/avatars/april-oneil.jpg",
       "email": "april.oneil@example.com",
-      "date": "10/22/15"}
+      "date": "10/22/15",
+      "activity": " posted Facebook\'s 2016 changes",
+      "activity_time": "2 hours ago"}
     ];
+    
+// Replace placeholder text with member data from JSON    
 
-   
+$.each(newMemberData, function(i, item) {
+    var fullName = newMemberData[i].first_name + " " + newMemberData[i].last_name;
+        $(newMemberName).each(function() {
+            $(newMemberName[i]).text(fullName);
+        });
+    var email = newMemberData[i].email;
+        $(newMemberEmail).each(function() {
+            $(newMemberEmail[i]).text(email);
+        });    
+    var date = newMemberData[i].date;
+         $(newMemberDate).each(function() {
+             $(newMemberDate[i]).text(date);
+         });   
+     var avatar = newMemberData[i].image;  
+        $(newMemberAvatar).each(function() {
+            $(newMemberAvatar[i]).attr('src', avatar);
+        }); 
+ });
 
+// Member Activity Widget
 
+var activityMemberName = document.getElementById("member-activity-list").querySelectorAll("li .member-name"); //holds both name and activity
 
+var activityTime = document.getElementById("member-activity-list").querySelectorAll("li .activity-time");
+var memberAvatar = document.getElementById("member-activity-list").querySelectorAll("li .member-avatar");
 
+// Replace placeholder text with member data from JSON   
 
+$.each(newMemberData.reverse(), function(i, item) {
+    var fullName = newMemberData[i].first_name + " " + newMemberData[i].last_name;
+    var activity = newMemberData[i].activity;
+        $(activityMemberName).each(function() {
+            $(activityMemberName[i]).text(fullName + " " + activity);
+        });
 
-
+    var time = newMemberData[i].activity_time;
+        $(activityTime).each(function() {
+            $(activityTime[i]).text(time);
+        });
+ 
+     var avatar = newMemberData[i].image;  
+        $(memberAvatar).each(function() {
+            $(memberAvatar[i]).attr('src', avatar);
+        }); 
+ });
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 
 
 

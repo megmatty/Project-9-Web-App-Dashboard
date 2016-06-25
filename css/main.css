@@ -202,8 +202,8 @@ ul {
     margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
 }
+
 
 .member-avatar {
     border-radius: 100%;
@@ -214,7 +214,7 @@ ul {
 .member-info {
     display: flex;
     flex-direction: column;
-    padding-left: 10px;
+    padding-left: 8px;
 }
 
 .member-name {
@@ -223,18 +223,15 @@ ul {
 }
 
 .member-email {
-    font-size: .9em;
+    font-size: .8em;
     color: #7277be;
 }
 
 .member-date {
     color: darkgrey;
+    font-size: .8em;
     margin-left: auto;
-    font-size: .9em;
 }
-
-
-
 
 
 
@@ -245,6 +242,12 @@ ul {
    margin-left: auto;
    width: 20px;
    height: 20px;
+}
+
+.member-activity-info {
+    display: flex;
+    flex-direction: row;
+    padding-left: 10px;
 }
 
 .member-activity {
@@ -442,7 +445,29 @@ button {
     width: 48%;
 }
 
+/*Alert*/
+.alert {
+    padding: 10px;
+    background-color: #7373bf;
+    color: white;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: .9em;
+}
 
+    /*Close button */
+    .closebtn {
+        margin-left: 15px;
+        color: white;
+        font-weight: bold;
+        float: right;
+        font-size: 22px;
+        line-height: 20px;
+        cursor: pointer;
+    }
 
 
 
@@ -471,6 +496,12 @@ button {
         width: 80%;
         margin: 0 auto;
     }
+
+    .alert {
+        width: 95%;
+        margin-left: 20px;
+    }
+    
     
     .icons {
         width: 30px;
@@ -520,13 +551,34 @@ button {
         border-bottom: 0;
     }
     
+    .member {
+        align-items: center;
+    }
+    
+    .member-date,
+    .member-email {
+        font-size: .9em;
+    }
+    
+    .member:last-child {
+        padding-bottom: 0;
+    }
+    
+    #mobile-users-widget,
+    #traffic-widget,
+    #social-stats,
+    #message-container,
+    #settings {
+        padding-bottom: 20px;
+    }
+    
 }
 
 
 /*desktop*/
 @media (min-width: 1024px) {
     .main-content {
-        padding-left: 100px;
+        padding-left: 80px;
     }
     
     .navbar {
@@ -534,12 +586,17 @@ button {
     }
     
     #search {
-        margin-left: 410px;
+        margin-left: 420px;
     }
     
     .box {
         padding-left: 30px;
         padding-top: 10px;
+    }
+    
+    .alert {
+        width: 98%;
+        margin-left: 8px;
     }
     
     .widget-name {
