@@ -1,23 +1,75 @@
-//Traffic Widget
-var trafficData = {
-    labels: ['16-22','23-29','30-5','6-12','13-19','20-26','27-3','4-10','11-17','18-24','25-31'],
-    datasets: [
-        {
-            data: [750,1250,1000,1500,2000,1500,1750,1250,1750,2000,1750,2250],
-            backgroundColor: 'rgba(227,227,246, 0.7)',
-            lineTension: 0,
-            pointBorderColor: '#7477BF',
-            pointRadius: 6,
-            pointBorderWidth: 2,
-            pointBackgroundColor: '#fff'
-        }
-    ]
-};
+//Traffic Widget Data
+    
+    //Weekly Traffic Data set
+    var weeklyTrafficData = {
+        labels: ['16-22','23-29','30-5','6-12','13-19','20-26','27-3','4-10','11-17','18-24','25-31'],
+        datasets: [
+            {
+                data: [750,1250,1000,1500,2000,1500,1750,1250,1750,2000,1750,2250],
+                backgroundColor: 'rgba(227,227,246, 0.7)',
+                lineTension: 0,
+                pointBorderColor: '#7477BF',
+                pointRadius: 6,
+                pointBorderWidth: 2,
+                pointBackgroundColor: '#fff'
+            }     
+        ]
+    };
 
+    //Hourly Traffic data set
+    var hourlyTrafficData = {
+        labels: ['16-22','23-29','30-5','6-12','13-19','20-26','27-3','4-10','11-17','18-24','25-31'],
+        datasets: [
+            {
+                data: [1500,1750,1250,1750,2000,1750,2250,750,1250,1000,1500,2000],
+                backgroundColor: 'rgba(115, 176, 190, 0.4)',
+                lineTension: 0,
+                pointBorderColor: '#73b0be',
+                pointRadius: 6,
+                pointBorderWidth: 2,
+                pointBackgroundColor: '#fff'
+            }     
+        ]
+    };
+    
+    //Daily Traffic data set
+    var todayTrafficData = {
+      labels: ['16-22','23-29','30-5','6-12','13-19','20-26','27-3','4-10','11-17','18-24','25-31'],
+      datasets: [
+          {
+              data: [1750,1250,1500,1750,2250,750,1250,1500,2000,1000,1750,2000],
+              backgroundColor: 'rgba(126, 190, 162, 0.4)',
+              lineTension: 0,
+              pointBorderColor: '#7EBEA2',
+              pointRadius: 6,
+              pointBorderWidth: 2,
+              pointBackgroundColor: '#fff'
+          }     
+      ]
+    };
+    
+    //Monthly Traffic data set
+    var monthlyTrafficData = {
+      labels: ['16-22','23-29','30-5','6-12','13-19','20-26','27-3','4-10','11-17','18-24','25-31'],
+      datasets: [
+          {
+              data: [1750,1250,1750,1500,2000,2000,1750,2250,750,1500,1250,1000],
+              backgroundColor: 'rgba(76, 75, 113, 0.3)',
+              lineTension: 0,
+              pointBorderColor: '#4c4b71',
+              pointRadius: 6,
+              pointBorderWidth: 2,
+              pointBackgroundColor: '#fff'
+          }     
+      ]
+    };
+    
+    
+//Draw Traffic Chart
 var traffic = document.getElementById("traffic-widget").getContext("2d");
 var trafficChart = new Chart(traffic, {
     type: 'line',
-    data: trafficData,
+    data: weeklyTrafficData,
     animation: {
         animateScale: true
     },
@@ -46,97 +98,139 @@ var trafficChart = new Chart(traffic, {
         }
     }
 });
+    
 
+
+//Traffic Widget Buttons
+    //Used jQuery here for ease of syntax
+    
+    //Change active button label on click
+    $("#chart-buttons a").click(function() {
+        $('#chart-buttons a').removeClass("active"); //take off active class from other buttons
+        $(this).addClass("active"); //add active button class to this one
+    });
+    
+    //Update charts to appropriate data set on button click
+     $("#button-hourly").click(function() {
+         trafficChart.config.data = hourlyTrafficData;
+         trafficChart.update();
+     });
+     
+     $("#button-weekly").click(function() {
+         trafficChart.config.data = weeklyTrafficData;
+         trafficChart.update();
+     });
+     
+     $("#button-daily").click(function() {
+         trafficChart.config.data = todayTrafficData;
+         trafficChart.update();
+     });
+     
+     $("#button-monthly").click(function() {
+         trafficChart.config.data = monthlyTrafficData;
+         trafficChart.update();
+     });
+ 
 
 
 //Daily Traffic Widget
 
-var dailyTrafficData = {
-    labels: ['S','M','T','W','R','F','S'],
-    datasets: [
-        {
-            data: [50,100,175,125,225,200,100],
-            backgroundColor: '#7477BF'
-        }
-    ]
-};
+    //Daily Traffic data
+    var dailyTrafficData = {
+        labels: ['S','M','T','W','R','F','S'],
+        datasets: [
+            {    label: 'Morning',
+                data: [50,100,175,125,225,200,100],
+                backgroundColor: '#7477BF'
+            },
+            {    label: 'Afternoon',
+                data: [75,150,50,200,175,100,125],
+                backgroundColor: '#73b0be'
+            }
+        ]
+    };
 
-var dailyTraffic = document.getElementById("daily-traffic-widget").getContext("2d");
-var dailyTrafficChart = new Chart(dailyTraffic, {
-    type: 'bar',
-    data: dailyTrafficData,
-    animation: {
-        animateScale: true
-    },
-    options: {
-        legend: {
-            display: false
+    //Draw Daily Traffic chart
+    var dailyTraffic = document.getElementById("daily-traffic-widget").getContext("2d");
+    var dailyTrafficChart = new Chart(dailyTraffic, {
+        type: 'bar',
+        data: dailyTrafficData,
+        animation: {
+            animateScale: true
         },
-        scales: {
-            yAxes: [{
-                type: 'linear',
-                ticks: {
-                    max: 250,
-                    min: 0,
-                    stepSize: 50
-                },
-                gridLines: {
-                    drawTicks: false,
-                    color: '#cdcdcd'
-                }
-            }],
-            xAxes: [{
-                gridLines: {
-                    drawTicks: false,
-                    color: '#cdcdcd'
-                }
-            }]
+        options: {
+            legend: {
+                position: 'bottom'
+            },
+            scales: {
+                yAxes: [{
+                    type: 'linear',
+                    ticks: {
+                        max: 250,
+                        min: 0,
+                        stepSize: 50
+                    },
+                    gridLines: {
+                        drawTicks: false,
+                        color: '#cdcdcd'
+                    }
+                }],
+                xAxes: [{
+                    gridLines: {
+                        drawTicks: false,
+                        color: '#cdcdcd'
+                    }
+                }]
+            }
         }
-    }
-});
+    });
 
 
 //Mobile Users Widget
 
-var mobileData = {
-    labels: [
-        'Phones',
-        'Tablets',
-        'Desktops'
-    ],
-    datasets: [
-        {
-            data: [20,20,60],
-            backgroundColor: [
-                '#73b0be',
-                '#7EBEA2',
-                '#7477BF'
-            ]
-        }
-    ]
-};
-
-
-var mobileUsers = document.getElementById("mobile-users-widget").getContext("2d");
-var mobileChart = new Chart(mobileUsers, {
-    type: 'doughnut',
-    data: mobileData,
-    animation: {
-        animateScale: true
-    },
-    options: {
-        elements: {
-            arc: {
-                borderWidth: 0
+    //Mobile User Data
+    var mobileData = {
+        labels: [
+            'Phones',
+            'Tablets',
+            'Desktops',
+            'Other',
+        ],
+        datasets: [
+            {
+                data: [20,20,55,5],
+                backgroundColor: [
+                    '#73b0be',
+                    '#7EBEA2',
+                    '#7477BF',
+                    '#4c4b71'
+                ]
             }
+        ]
+    };
+
+    //Draw Mobile User Chart
+    var mobileUsers = document.getElementById("mobile-users-widget").getContext("2d");
+    var mobileChart = new Chart(mobileUsers, {
+        type: 'doughnut',
+        data: mobileData,
+        animation: {
+            animateScale: true
         },
-        legend: {
-            labels: {
-                boxWidth: 15
+        options: {
+            elements: {
+                arc: {
+                    borderWidth: 0
+                }
+            },
+            legend: {
+                position: 'bottom',
+                labels: {
+                    boxWidth: 15
+                }
             }
         }
-    }
-});
+    });
 
 
 //New Members Widget
@@ -150,6 +244,7 @@ var newMemberData = [
     {"first_name": "Pete",
       "last_name": "Wrigley",
       "image": "http://www.radfaces.com/images/avatars/little-pete-wrigley.jpg",
+      "icon": "icons/post.svg",
       "email": "pete.wrigley@example.com",
       "date": "10/15/15",
       "activity": " posted YourApp\'s SEO tips",
@@ -157,6 +252,7 @@ var newMemberData = [
     {"first_name": "Aeon",
       "last_name": "Flux",
       "image": "http://www.radfaces.com/images/avatars/aeon-flux.jpg",
+      "icon": "icons/like.svg",
       "email": "aeon.flux@example.com",
       "date": "10/16/15",
       "activity": " liked YourApp\'s SEO tips",
@@ -164,6 +260,7 @@ var newMemberData = [
     {"first_name": "Alan",
       "last_name": "Frog",
       "image": "http://www.radfaces.com/images/avatars/alan-frog.jpg",
+      "icon": "icons/comment.svg",
       "email": "alan.frog@example.com",
       "date": "10/20/15",
       "activity": " commented on YourApp\'s SEO tips",
@@ -171,6 +268,7 @@ var newMemberData = [
     {"first_name": "Amanda",
       "last_name": "Bynes",
       "image": "http://www.radfaces.com/images/avatars/amanda-bynes.jpg",
+      "icon": "icons/like.svg",
       "email": "amanda.bynes@example.com",
       "date": "10/21/15",
       "activity": " liked Facebook\'s 2016 Changes",
@@ -178,6 +276,7 @@ var newMemberData = [
     {"first_name": "April",
       "last_name": "O'Neil",
       "image": "http://www.radfaces.com/images/avatars/april-oneil.jpg",
+      "icon": "icons/post.svg",
       "email": "april.oneil@example.com",
       "date": "10/22/15",
       "activity": " posted Facebook\'s 2016 changes",
@@ -185,6 +284,7 @@ var newMemberData = [
     ];
     
 // Replace placeholder text with member data from JSON    
+    //jQuery used to create forEach loops here because the syntax is much easier to understand
 
 $.each(newMemberData, function(i, item) {
     var fullName = newMemberData[i].first_name + " " + newMemberData[i].last_name;
@@ -205,14 +305,16 @@ $.each(newMemberData, function(i, item) {
         }); 
  });
 
+
 // Member Activity Widget
 
 var activityMemberName = document.getElementById("member-activity-list").querySelectorAll("li .member-name"); //holds both name and activity
 
 var activityTime = document.getElementById("member-activity-list").querySelectorAll("li .activity-time");
 var memberAvatar = document.getElementById("member-activity-list").querySelectorAll("li .member-avatar");
+var activityIcon = document.getElementById("member-activity-list").querySelectorAll("li .activity-icon");
 
-// Replace placeholder text with member data from JSON   
+// Replace placeholder text with activity data from JSON   
 
 $.each(newMemberData.reverse(), function(i, item) {
     var fullName = newMemberData[i].first_name + " " + newMemberData[i].last_name;
@@ -230,18 +332,33 @@ $.each(newMemberData.reverse(), function(i, item) {
         $(memberAvatar).each(function() {
             $(memberAvatar[i]).attr('src', avatar);
         }); 
+        
+    var actIcon = newMemberData[i].icon;
+        $(activityIcon).each(function() {
+            $(activityIcon[i]).attr('src', actIcon);
+        });
+        
  });
  
+// Notification Bar
+    //Used jQuery again here for ease of syntax/use
  
+ //Close Alert on Click
+ $(".closebtn").click(function() {
+     $(".alert").fadeOut("slow");
+     $("#notifier").fadeOut("fast");
+ });
  
- 
- 
- 
- 
- 
- 
- 
- 
+ //Notification Menu toggle
+ $(".icon-notify").click(function() {
+     $(".notify-menu").fadeToggle("slow");
+ });
+     //Clicking on menu also closes it
+     $(".notify-menu").click(function() {
+         $(".notify-menu").fadeOut("slow");
+     });
+
+
  
  
  
