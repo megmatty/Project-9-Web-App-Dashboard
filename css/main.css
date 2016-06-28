@@ -30,7 +30,7 @@ h2 {
     font-size: .9em;
 }
 
-.user {
+.user {  
     padding-right: 20px;
     padding-left: 5px;
 }
@@ -114,6 +114,15 @@ h2 {
    height: 55px;
 }
 
+#chart-buttons {
+    display: none;
+}
+
+#hourly-traffic {
+    display: none;
+}
+
+
 /*icons*/
 
 .icons {
@@ -135,9 +144,46 @@ h2 {
     margin-bottom: -3px;
 }
 
+#notifier {
+    background-color: #80c98f;
+    border-radius: 100%;
+    width: 8px;
+    height: 8px;
+    position: absolute;
+    top: 18px;
+    left: 202px;
+}
+
 .user-pic {
     display: none;
+    width: 25px;
+    height: 25px;
 }
+
+.activity-icon {
+    display: none;
+}
+
+/*notification menu*/
+
+.notify-menu {
+    position: relative;
+    display: inline-block;
+    display: none;
+}
+
+.notify-menu-content {
+    position: absolute;
+    left: -90px;
+    top: 40px;
+    background-color: #f9f9f9;
+    min-width: 175px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    color:  #a59797;
+    font-size: .9em;
+}
+
 
 /*social icons*/
 
@@ -204,7 +250,6 @@ ul {
     justify-content: space-between;
 }
 
-
 .member-avatar {
     border-radius: 100%;
     width: 40px;
@@ -234,20 +279,16 @@ ul {
 }
 
 
-
-
 /*Recent Activity*/
+
+#member-activity-list .member {
+    align-items: center;
+}
 
 .activity-arrow {
    margin-left: auto;
    width: 20px;
    height: 20px;
-}
-
-.member-activity-info {
-    display: flex;
-    flex-direction: row;
-    padding-left: 10px;
 }
 
 .member-activity {
@@ -259,8 +300,6 @@ ul {
     color: darkgrey;
     font-size: .8em;
 }
-
-
 
 
 /*Custom dropdown arrow*/
@@ -290,14 +329,58 @@ textarea {
 input[type="search"] {
     width: calc(100% - 12px);
     border: 1px solid lightgrey;
+    border-radius: 5px;
     background-color: #eee;
     padding: 5px;
     margin: 0;
 }
 
 textarea {
-    padding: 50px;
+    padding: 0 50px 100px 0;
     margin-top: 15px;
+    border-radius: 5px;
+}
+
+::-webkit-input-placeholder {
+	text-align: left;
+	font-style: italic;
+	padding-right: 5px;
+	font-size: .9em;
+}
+
+::-moz-placeholder { /*firefox*/
+	text-align: left;
+	font-style: italic;
+	padding-right: 5px;
+	font-size: .9em;
+}
+
+::-ms-input-placeholder { /*IE + Edge*/
+	text-align: left;
+	font-style: italic;
+	padding-right: 5px;
+	font-size: .9em;
+}
+
+textarea::-webkit-input-placeholder {
+	padding-top: 10px;
+	padding-left: 5px;
+	text-align: left;
+	font-size: .9em;
+}
+
+textarea::-moz-placeholder { /*firefox*/
+	text-align: left;
+	font-size: .9em;
+	padding-top: 10px;
+	padding-left: 5px;
+}
+
+textarea::-ms-input-placeholder { /*IE + Edge*/
+	text-align: left;
+	font-size: .9em;
+	padding-top: 10px;
+	padding-left: 5px;
 }
 
 
@@ -410,8 +493,7 @@ textarea {
 	box-shadow: -1px 1px 5px rgba(0, 0, 0, 0.2);
 }
  
-/* Switch Transition
-========================== */
+/* Switch Transition */
 .switch-label, .switch-handle {
 	transition: All 0.3s ease;
 	-webkit-transition: All 0.3s ease;
@@ -433,16 +515,19 @@ button {
 .send-button {
     background-color: #7373bf;
     width: 100%;
+    transition: all .3s ease;
 }
 
 .save-button {
     background-color: #7373bf;
     width: 48%;
+    transition: all .3s ease;
 }
 
 .cancel-button {
     background-color: #a3a4a3;
     width: 48%;
+    transition: all .3s ease;
 }
 
 /*Alert*/
@@ -476,7 +561,7 @@ button {
     .container {
         display: flex;
         flex-direction: row;
-        min-height: 1200px;
+        min-height: 2000px;
         width: 100%;
     }
     
@@ -489,7 +574,7 @@ button {
         align-items: center;
         position: fixed;
         z-index: 97;
-        min-height: 1200px;
+        min-height: 2000px;
     }
     
     .widget-container {
@@ -502,6 +587,9 @@ button {
         margin-left: 20px;
     }
     
+    #notifier {
+        left: 600px;
+    }
     
     .icons {
         width: 30px;
@@ -572,10 +660,38 @@ button {
         padding-bottom: 20px;
     }
     
+    /*traffic chart toggle buttons*/
+    
+    .button-group {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+    #chart-buttons {
+        display: block;
+    }
+    
+    #chart-buttons a {
+        margin: 40px 0;
+        padding: 5px 15px;
+        text-decoration: none;
+        color: #a59797;
+        display: inline-block;
+        font-weight: bold;
+        font-size: .8em;
+        border-radius: 15px;
+        cursor: pointer;
+    }
+    
+    #chart-buttons .active {
+        background-color: #80c98f;
+        color: white;
+    } 
 }
 
 
-/*desktop*/
+/*desktops*/
 @media (min-width: 1024px) {
     .main-content {
         padding-left: 80px;
@@ -599,8 +715,27 @@ button {
         margin-left: 8px;
     }
     
+    .icon-notify {
+        width: 25px;
+        height: 25px;
+    }
+    
+    #notifier {
+        width: 10px;
+        height: 10px;
+        left: 855px;
+        top: 16px;
+    }
+    
     .widget-name {
         text-align: left;
+    }
+    
+    .activity-icon {
+        display: inline-block;
+        width: 35px;
+        height: 35px;
+        padding-left: 10px;
     }
 
    .graphs-container {
@@ -617,8 +752,7 @@ button {
        padding-bottom: 25px;
    }
    
-   .graphs-container.widget-container {
-       width: 50%%;
+   .graphs-container .widget-container {
        align-items: stretch;
    }
     
@@ -654,7 +788,8 @@ button {
    .flex-social-container {
        display: flex;
        flex-direction: row;
-       justify-content: space-between;
+       flex-wrap: wrap;
+       justify-content: space-around;
    }
    
    .social-container {
@@ -666,8 +801,16 @@ button {
        margin-top: 25px;
    }
    
+   .dropdown {
+       padding: 10px;
+   }
+   
    #settings .flex-container {
-       margin-top: 20px;
+       margin-top: 16px;
+   }
+   
+   .flex-container p {
+       font-size: .9em;
    }
    
    #mobile-users-container .widget-name,
@@ -676,5 +819,57 @@ button {
        padding-left: 30px;
    }
    
+   .save-button:hover,
+   .send-button:hover {
+       background-color: #7cbea1;
+   }
+   
+   .cancel-button:hover {
+       background-color: #5b5757;
+   }
    
 }
+
+@media (min-width: 1200px) {
+    .main-content {
+        padding-left: 100px;
+    }
+    
+    #search {
+        margin-left: 500px;
+    }
+    
+    #notifier {
+        width: 10px;
+        height: 10px;
+        left: 1035px;
+    }
+
+}
+
+@media (min-width: 1440px) {
+    .main-content {
+        padding-left: 120px;
+    }
+    
+    #search {
+        margin-left: 600px;
+    }
+    
+    #notifier {
+        width: 10px;
+        height: 10px;
+        left: 1274px;
+    }
+    
+    .dropdown {
+        background-size: 4%;
+    }
+
+}
+
+
+
+
+/*TO DO*/
+/*Add SVG icons to member activity section*/
