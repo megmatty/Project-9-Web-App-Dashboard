@@ -1,6 +1,6 @@
 //Traffic Widget Data
     
-    //Weekly Traffic Data set
+    //Weekly Traffic data set
     var weeklyTrafficData = {
         labels: ['16-22','23-29','30-5','6-12','13-19','20-26','27-3','4-10','11-17','18-24','25-31'],
         datasets: [
@@ -104,13 +104,13 @@ var trafficChart = new Chart(traffic, {
 //Traffic Widget Buttons
     //Used jQuery here for ease of syntax
     
-    //Change active button label on click
+    //Change traffic chart active button label on click
     $("#chart-buttons a").click(function() {
         $('#chart-buttons a').removeClass("active"); //take off active class from other buttons
         $(this).addClass("active"); //add active button class to this one
     });
     
-    //Update charts to appropriate data set on button click
+    //Update traffic chart to appropriate data set on button click
      $("#button-hourly").click(function() {
          trafficChart.config.data = hourlyTrafficData;
          trafficChart.update();
@@ -132,10 +132,9 @@ var trafficChart = new Chart(traffic, {
      });
  
 
-
 //Daily Traffic Widget
 
-    //Daily Traffic data
+    //Daily Traffic data set
     var dailyTrafficData = {
         labels: ['S','M','T','W','R','F','S'],
         datasets: [
@@ -188,7 +187,7 @@ var trafficChart = new Chart(traffic, {
 
 //Mobile Users Widget
 
-    //Mobile User Data
+    //Mobile User data set
     var mobileData = {
         labels: [
             'Phones',
@@ -240,54 +239,50 @@ var newMemberEmail = document.getElementById("new-member-list").querySelectorAll
 var newMemberDate = document.getElementById("new-member-list").querySelectorAll("li .member-date");
 var newMemberAvatar = document.getElementById("new-member-list").querySelectorAll("li .member-avatar");
 
-var newMemberData = [
-    {"first_name": "Pete",
-      "last_name": "Wrigley",
-      "image": "http://www.radfaces.com/images/avatars/little-pete-wrigley.jpg",
-      "icon": "icons/post.svg",
-      "email": "pete.wrigley@example.com",
-      "date": "10/15/15",
-      "activity": " posted YourApp\'s SEO tips",
-      "activity_time": "8 hours ago"}, 
-    {"first_name": "Aeon",
-      "last_name": "Flux",
-      "image": "http://www.radfaces.com/images/avatars/aeon-flux.jpg",
-      "icon": "icons/like.svg",
-      "email": "aeon.flux@example.com",
-      "date": "10/16/15",
-      "activity": " liked YourApp\'s SEO tips",
-      "activity_time": "6 hours ago"},
-    {"first_name": "Alan",
-      "last_name": "Frog",
-      "image": "http://www.radfaces.com/images/avatars/alan-frog.jpg",
-      "icon": "icons/comment.svg",
-      "email": "alan.frog@example.com",
-      "date": "10/20/15",
-      "activity": " commented on YourApp\'s SEO tips",
-      "activity_time": "5 hours ago"},
-    {"first_name": "Amanda",
-      "last_name": "Bynes",
-      "image": "http://www.radfaces.com/images/avatars/amanda-bynes.jpg",
-      "icon": "icons/like.svg",
-      "email": "amanda.bynes@example.com",
-      "date": "10/21/15",
-      "activity": " liked Facebook\'s 2016 Changes",
-      "activity_time": "3 hours ago"},
-    {"first_name": "April",
-      "last_name": "O'Neil",
-      "image": "http://www.radfaces.com/images/avatars/april-oneil.jpg",
-      "icon": "icons/post.svg",
-      "email": "april.oneil@example.com",
-      "date": "10/22/15",
-      "activity": " posted Facebook\'s 2016 changes",
-      "activity_time": "2 hours ago"}
-    ];
+    //Member Data JSON - avatars from radfaces.com
+    var newMemberData = [
+        {"name": "Pete Wrigley",
+          "image": "http://www.radfaces.com/images/avatars/little-pete-wrigley.jpg",
+          "icon": "icons/post.svg",
+          "email": "pete.wrigley@example.com",
+          "date": "10/15/15",
+          "activity": " posted YourApp\'s SEO tips",
+          "activity_time": "8 hours ago"}, 
+        {"name": "Aeon Flux",
+          "image": "http://www.radfaces.com/images/avatars/aeon-flux.jpg",
+          "icon": "icons/like.svg",
+          "email": "aeon.flux@example.com",
+          "date": "10/16/15",
+          "activity": " signed up for YourApp",
+          "activity_time": "6 hours ago"},
+        {"name": "Alan Frog",
+          "image": "http://www.radfaces.com/images/avatars/alan-frog.jpg",
+          "icon": "icons/comment.svg",
+          "email": "alan.frog@example.com",
+          "date": "10/20/15",
+          "activity": " commented on YourApp\'s SEO tips",
+          "activity_time": "5 hours ago"},
+        {"name": "Amanda Bynes",
+          "image": "http://www.radfaces.com/images/avatars/amanda-bynes.jpg",
+          "icon": "icons/like.svg",
+          "email": "amanda.bynes@example.com",
+          "date": "10/21/15",
+          "activity": " signed up for YourApp",
+          "activity_time": "3 hours ago"},
+        {"name": "April O'Neil",
+          "image": "http://www.radfaces.com/images/avatars/april-oneil.jpg",
+          "icon": "icons/post.svg",
+          "email": "april.oneil@example.com",
+          "date": "10/22/15",
+          "activity": " posted Facebook\'s 2016 changes",
+          "activity_time": "2 hours ago"}
+        ];
     
 // Replace placeholder text with member data from JSON    
-    //jQuery used to create forEach loops here because the syntax is much easier to understand
+    //jQuery used to create forEach loops because the syntax is much easier to understand
 
 $.each(newMemberData, function(i, item) {
-    var fullName = newMemberData[i].first_name + " " + newMemberData[i].last_name;
+    var fullName = newMemberData[i].name;
         $(newMemberName).each(function() {
             $(newMemberName[i]).text(fullName);
         });
@@ -314,10 +309,10 @@ var activityTime = document.getElementById("member-activity-list").querySelector
 var memberAvatar = document.getElementById("member-activity-list").querySelectorAll("li .member-avatar");
 var activityIcon = document.getElementById("member-activity-list").querySelectorAll("li .activity-icon");
 
-// Replace placeholder text with activity data from JSON   
+// Replace placeholder text with member activity data from JSON   
 
 $.each(newMemberData.reverse(), function(i, item) {
-    var fullName = newMemberData[i].first_name + " " + newMemberData[i].last_name;
+    var fullName = newMemberData[i].name;
     var activity = newMemberData[i].activity;
         $(activityMemberName).each(function() {
             $(activityMemberName[i]).text(fullName + " " + activity);
@@ -340,7 +335,7 @@ $.each(newMemberData.reverse(), function(i, item) {
         
  });
  
-// Notification Bar
+// Notification Alert Bar
     //Used jQuery again here for ease of syntax/use
  
  //Close Alert on Click
@@ -360,7 +355,7 @@ $.each(newMemberData.reverse(), function(i, item) {
 
 
 //Local Storage
-    //Select menu
+    //Timezone Select menu
     var select = document.querySelector('.dropdown');
     var selectOption = select.options[select.selectedIndex];
     var lastSelected = localStorage.getItem('select');
@@ -369,15 +364,14 @@ $.each(newMemberData.reverse(), function(i, item) {
         select.value = lastSelected;
     }
     
-    select.onchange = function () {
-       lastSelected = select.options[select.selectedIndex].value;
-       console.log(lastSelected);
-       localStorage.setItem('select', lastSelected);
-    }
+    select.onchange = function () { //when it changes
+       lastSelected = select.options[select.selectedIndex].value; 
+       localStorage.setItem('select', lastSelected); //store the new value
+    };
     
-    //Switches
+    //Settings Switches
   
-        //Save email Setting
+        //Save Email Notification Setting
             $(function () {
               var checked = localStorage.getItem("email-pref");
             
@@ -395,7 +389,7 @@ $.each(newMemberData.reverse(), function(i, item) {
               }
             });
    
-       //Save Profile Setting
+       //Save Profile Privacy Setting
            $(function () {
              var checked = localStorage.getItem("profile-pref");
            
@@ -413,20 +407,52 @@ $.each(newMemberData.reverse(), function(i, item) {
              }
            });
  
-//Message Sent modal
-$(".send-button").click(function() {     
-     if ( $('#message-form')[0].checkValidity() ) { //check if form validates first
-         $('#dialog-sent').fadeIn('slow').delay(2000).fadeOut('slow'); //if valid, show sent message
-         $("input[name='searchUser']").val(""); //clears text
-         $("textarea").val(""); //clears text
-         return false;
-         
-     } 
+//Validate Message Form & Modals
+$(".send-button").click(function() { 
+    validateForm();    
 });
 
-//autocomplete the user message area from json
+function validateForm() {
+    var messageUser = document.forms["messageForm"]["searchUser"].value;
+    var messageContent = document.forms["messageForm"]["message"].value;
+    if ( messageUser === null || messageUser === "" ) { //if the user field is empty
+        $('#dialog-no-sent').fadeIn('slow').delay(2000).fadeOut('slow'); //show error message
+        event.preventDefault(); //stop page from reloading
+    } else if ( messageContent === null || messageContent === "" ) { //if the message field is empty
+        $('#dialog-no-sent').fadeIn('slow').delay(2000).fadeOut('slow'); //show error message
+        event.preventDefault();
+    } else {
+        $('#dialog-sent').fadeIn('slow').delay(2000).fadeOut('slow'); //otherwise, show sent message
+         $("input[name='searchUser']").val(""); //clears text
+         $("textarea").val(""); //clears text
+         event.preventDefault();
+    }
+}
 
- 
 
+
+//Autocomplete user search text from JSON
+    //Used jQuery-UI Autocomplete widget
+
+$('#user-search').autocomplete({
+        minLength: 1,
+        source: function (request, response) {
+           response($.map(newMemberData, function (value, key) {
+                return {
+                    label: value.name
+                };
+            }));
+        
+    },    
+        focus: function(event, ui) {
+            $('#search').val(ui.item.name);
+            return false;
+        },
+        // Once a value in the drop down list is selected,
+        select: function(event, ui) {
+            // Put the name value into the input
+            $('#user-search').val(ui.item.name);
+        }
+    });
 
 

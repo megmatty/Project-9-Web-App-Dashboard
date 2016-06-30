@@ -6,6 +6,7 @@
         <title>Web App Dashboard</title>
         <link rel="stylesheet" href="css/normalize.css" />
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
         <link rel="stylesheet" href="css/main.css" />
     </head>
 
@@ -373,11 +374,15 @@
                     <div id="dialog-sent">
                         <p>Your message has been sent!</p>
                     </div>
+                    <div id="dialog-no-sent">
+                        <p>Please complete both fields.</p>
+                    </div>
 
                     <h3 class="widget-name">Message User</h3>
-                        <form id="message-form" method="post" action="index.html">
-                            <input type="search" name="searchUser" placeholder="Search for User" required /><br />
-                            <textarea name="message" placeholder="Message for User" required></textarea><br />
+                        <form id="message-form" method="post" action="index.html" name="messageForm">
+                            <input id="user-search" type="search" name="searchUser" placeholder="Search for User"  /><br />
+                            <label for="user-search"></label>
+                            <textarea name="message" placeholder="Message for User" ></textarea><br />
                             <button class="send-button" type="submit">Send</button>
                         </form>
                     
@@ -448,6 +453,8 @@
         </div>
         
         <script src="https://code.jquery.com/jquery-3.0.0.min.js" type="text/javascript"></script>
+        <script src="https://code.jquery.com/jquery-migrate-3.0.0.min.js" type="text/javascript"></script>
+        <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js" type="text/javascript"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.6/Chart.js" type="text/javascript"></script>
         <script src="js/app.js" type="text/javascript"></script>
     </body>
