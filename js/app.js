@@ -359,8 +359,73 @@ $.each(newMemberData.reverse(), function(i, item) {
      });
 
 
+//Local Storage
+    //Select menu
+    var select = document.querySelector('.dropdown');
+    var selectOption = select.options[select.selectedIndex];
+    var lastSelected = localStorage.getItem('select');
+    
+    if (lastSelected) {
+        select.value = lastSelected;
+    }
+    
+    select.onchange = function () {
+       lastSelected = select.options[select.selectedIndex].value;
+       console.log(lastSelected);
+       localStorage.setItem('select', lastSelected);
+    }
+    
+    //Switches
+  
+        //Save email Setting
+            $(function () {
+              var checked = localStorage.getItem("email-pref");
+            
+              if (checked !== null) {
+                  $("input[name='email-switch']").attr("checked", "checked");
+              }
+            });
+
+            $("input[name='email-switch']").click(function () {
+            
+              if ($(this).is(":checked")) {
+                  localStorage.setItem("email-pref", $(this).val());
+              } else {
+                  localStorage.removeItem("email-pref");
+              }
+            });
+   
+       //Save Profile Setting
+           $(function () {
+             var checked = localStorage.getItem("profile-pref");
+           
+             if (checked !== null) {
+                 $("input[name='profile-switch']").attr("checked", "checked");
+             }
+           });
+
+           $("input[name='profile-switch']").click(function () {
+           
+             if ($(this).is(":checked")) {
+                 localStorage.setItem("profile-pref", $(this).val());
+             } else {
+                 localStorage.removeItem("profile-pref");
+             }
+           });
  
- 
+//Message Sent modal
+$(".send-button").click(function() {     
+     if ( $('#message-form')[0].checkValidity() ) { //check if form validates first
+         $('#dialog-sent').fadeIn('slow').delay(2000).fadeOut('slow'); //if valid, show sent message
+         $("input[name='searchUser']").val(""); //clears text
+         $("textarea").val(""); //clears text
+         return false;
+         
+     } 
+});
+
+//autocomplete the user message area from json
+
  
 
 

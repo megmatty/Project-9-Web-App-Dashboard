@@ -370,10 +370,14 @@
                                    
                 <div class="graphs-container">
                     <div class="widget-container" id="message-container">
+                    <div id="dialog-sent">
+                        <p>Your message has been sent!</p>
+                    </div>
+
                     <h3 class="widget-name">Message User</h3>
-                        <form method="post" action="index.html">
-                            <input type="search" name="search-user" placeholder="Search for User" /><br />
-                            <textarea placeholder="Message for User"></textarea><br />
+                        <form id="message-form" method="post" action="index.html">
+                            <input type="search" name="searchUser" placeholder="Search for User" required /><br />
+                            <textarea name="message" placeholder="Message for User" required></textarea><br />
                             <button class="send-button" type="submit">Send</button>
                         </form>
                     
@@ -384,20 +388,18 @@
                        <form method="post" action="index.html">
                            <div class="flex-container">
                                <p>Send Email Notifications</p>
-                               <label for="send-email-toggle" class="switch switch-left-right">
-                               <input type="checkbox" name="toggle" id="send-email-toggle" class="switch-input"/>
-                               <span class="switch-label" data-on="On" data-off="Off"></span> 
-                               	<span class="switch-handle"></span> 
-                               </label>
+                               <div class="switch">
+                                 <input id="email-toggle" name="email-switch" class="cmn-toggle cmn-toggle-round" type="checkbox" value="">
+                                 <label for="email-toggle" data-on="ON" data-off="OFF"></label>
+                               </div>
                            </div>
                             
                             <div class="flex-container">
                                 <p>Set Profile to Public</p>
-                                <label for="set-profile-toggle" class="switch switch-left-right">
-                                <input type="checkbox" name="toggle" id="set-profile-toggle" class="switch-input"/>
-                                <span class="switch-label" data-on="On" data-off="Off"></span> 
-                                <span class="switch-handle"></span>
-                                </label>
+                                <div class="switch">
+                                  <input id="profile-toggle" name="profile-switch" class="cmn-toggle cmn-toggle-round" type="checkbox" value="">
+                                  <label for="profile-toggle" data-on="ON" data-off="OFF"></label>
+                                </div>
                             </div>
                             
                             <label for="DropDownTimezone"></label>                           

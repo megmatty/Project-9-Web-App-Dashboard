@@ -164,6 +164,21 @@ h2 {
     display: none;
 }
 
+#dialog-sent {
+    display: none;
+    color: #878987;
+    background-color: rgba(249, 249, 249, 0.9);
+    width: 300px;
+    height: 100px;
+    text-align: center;
+    line-height: 4;
+    border: 3px solid #746fc0;
+    border-radius: 5px;
+    z-index: 999;
+    position: absolute;
+    left: 10px;
+}
+
 /*notification menu*/
 
 .notify-menu {
@@ -176,14 +191,13 @@ h2 {
     position: absolute;
     left: -90px;
     top: 40px;
-    background-color: #f9f9f9;
+    background-color: rgb(249, 249, 249);
     min-width: 175px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     padding: 12px 16px;
     color:  #a59797;
     font-size: .9em;
 }
-
 
 /*social icons*/
 
@@ -312,7 +326,7 @@ textarea {
 }
 
 .dropdown { 
-	color: lightgrey;
+	color: #a1a3a1;
 	font-family: 'OpenSans', sans-serif;
 	font-size: .8em;
   	-webkit-appearance: none; /*hides default arrow*/
@@ -321,7 +335,7 @@ textarea {
   	background-image: url("../icons/arrow.png");
  	background-repeat: no-repeat;
  	background-position: 95% 50%;
- 	background-size: 5%;
+ 	margin-top: 10px;
 }
 
 /*Message User Fields*/
@@ -389,7 +403,6 @@ textarea::-ms-input-placeholder { /*IE + Edge*/
 .flex-container {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     margin-bottom: 10px;
 }
 
@@ -401,105 +414,71 @@ textarea::-ms-input-placeholder { /*IE + Edge*/
     color: darkgrey;
 }
 
-.switch {
-	position: relative;
-	display: block;
-	vertical-align: top;
-	width: 80px;
-	height: 30px;
-	padding: 3px;
-	margin: 0 0 10px 0;
-	background: linear-gradient(to bottom, #eeeeee, #FFFFFF 25px);
-	background-image: -webkit-linear-gradient(top, #eeeeee, #FFFFFF 25px);
-	border-radius: 18px;
-	box-shadow: inset 0 -1px white, inset 0 1px 1px rgba(0, 0, 0, 0.05);
-	cursor: pointer;
+.cmn-toggle {
+  position: absolute;
+  margin-left: -9999px;
+  visibility: hidden;
 }
-.switch-input {
-	position: absolute;
-	top: 0;
-	left: 0;
-	opacity: 0;
+
+.cmn-toggle + label {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  outline: none;
 }
-.switch-label {
-	position: relative;
-	display: block;
-	height: inherit;
-	font-size: 12px;
-	text-transform: uppercase;
-	background: #eceeef;
-	border-radius: inherit;
-	box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12), inset 0 0 2px rgba(0, 0, 0, 0.15);
+
+input.cmn-toggle-round + label {
+  padding: 2px;
+  width: 70px;
+  height: 30px;
+  background-color: #dddddd;
+  border-radius: 60px;
 }
-.switch-label:before, .switch-label:after {
-	position: absolute;
-	top: 50%;
-	margin-top: -.5em;
-	line-height: 1;
-	-webkit-transition: inherit;
-	-moz-transition: inherit;
-	-o-transition: inherit;
-	transition: inherit;
+
+input.cmn-toggle-round + label:before,
+input.cmn-toggle-round + label:after {
+  display: block;
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  bottom: 1px;
+  content: "";
 }
-.switch-label:before {
-	content: attr(data-off);
-	right: 11px;
-	color: #aaaaaa;
-	text-shadow: 0 1px rgba(255, 255, 255, 0.5);
+
+input.cmn-toggle-round + label:before {
+  content: attr(data-off);
+  right: 1px;
+  background-color: #f1f1f1;
+  border-radius: 60px;
+  transition: background 0.4s;
+  color: #a1a3a1;
+  padding-top: 4px;
+  padding-left: 33px;
+  font-size: .9em;
 }
-.switch-label:after {
-	content: attr(data-on);
-	left: 11px;
-	color: #FFFFFF;
-	text-shadow: 0 1px rgba(0, 0, 0, 0.2);
-	opacity: 0;
+
+input.cmn-toggle-round + label:after {
+  width: 26px;
+  height: 26px;
+  background-color: #fff;
+  border-radius: 100%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  transition: margin 0.4s;
 }
-.switch-input:checked ~ .switch-label {
-	background: #7373bf;
-	box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15), inset 0 0 3px rgba(0, 0, 0, 0.2);
+
+input.cmn-toggle-round:checked + label:before {
+  content: attr(data-on);
+  background-color: #7373bf;
+  padding-top: 4px;
+  padding-left: 10px;
+  color: white;
+  font-size: .9em;
 }
-.switch-input:checked ~ .switch-label:before {
-	opacity: 0;
+
+input.cmn-toggle-round:checked + label:after {
+  margin-left: 42px;
 }
-.switch-input:checked ~ .switch-label:after {
-	opacity: 1;
-}
-.switch-handle {
-	position: absolute;
-	top: 6px;
-	left: 6px;
-	width: 24px;
-	height: 24px;
-	background: linear-gradient(to bottom, #FFFFFF 40%, #f0f0f0);
-	background-image: -webkit-linear-gradient(top, #FFFFFF 40%, #f0f0f0);
-	border-radius: 100%;
-	box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
-}
-.switch-handle:before {
-	content: "";
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	margin: -6px 0 0 -6px;
-	width: 12px;
-	height: 12px;
-	background: linear-gradient(to bottom, #eeeeee, #FFFFFF);
-	background-image: -webkit-linear-gradient(top, #eeeeee, #FFFFFF);
-	border-radius: 6px;
-	box-shadow: inset 0 1px rgba(0, 0, 0, 0.02);
-}
-.switch-input:checked ~ .switch-handle {
-	left: 50px;
-	box-shadow: -1px 1px 5px rgba(0, 0, 0, 0.2);
-}
- 
-/* Switch Transition */
-.switch-label, .switch-handle {
-	transition: All 0.3s ease;
-	-webkit-transition: All 0.3s ease;
-	-moz-transition: All 0.3s ease;
-	-o-transition: All 0.3s ease;
-}
+
 
 /*Buttons*/
 
@@ -684,6 +663,11 @@ button {
         background-color: #80c98f;
         color: white;
     } 
+    
+    #dialog-sent {
+        left: 265px;
+    }  
+    
 }
 
 
@@ -794,6 +778,7 @@ button {
    
    select {
        margin-top: 25px;
+       margin-bottom: 30px;
    }
    
    .dropdown {
@@ -801,7 +786,7 @@ button {
    }
    
    #settings .flex-container {
-       margin-top: 16px;
+       margin-top: 25px;
    }
    
    .flex-container p {
@@ -823,6 +808,10 @@ button {
        background-color: #5b5757;
    }
    
+   #dialog-sent {
+       left: 385px;
+   }  
+   
 }
 
 @media (min-width: 1200px) {
@@ -837,6 +826,10 @@ button {
     #notifier {
         width: 10px;
         height: 10px;
+    }
+    
+    #dialog-sent {
+        left: 485px;
     }
 
 }
@@ -857,6 +850,10 @@ button {
     
     .dropdown {
         background-size: 4%;
+    }
+    
+    #dialog-sent {
+        left: 615px;
     }
 
 }
