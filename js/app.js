@@ -413,20 +413,20 @@ function validateForm(event) {
     var messageContent = document.forms["messageForm"]["message"].value;
     if ( messageUser === null || messageUser === "" ) { //if the user field is empty
         $('#dialog-no-sent').fadeIn('slow').delay(2000).fadeOut('slow'); //show error message
-        event.preventDefault(); //stop page from reloading
+        event.preventDefault(event); //stop page from reloading
     } else if ( messageContent === null || messageContent === "" ) { //if the message field is empty
         $('#dialog-no-sent').fadeIn('slow').delay(2000).fadeOut('slow'); //show error message
-        event.preventDefault();
+        event.preventDefault(event);
     } else {
         $('#dialog-sent').fadeIn('slow').delay(2000).fadeOut('slow'); //otherwise, show sent message
          $("input[name='searchUser']").val(""); //clears text
          $("textarea").val(""); //clears text
-         event.preventDefault();
+         event.preventDefault(event);
     }
 }
 
-$(".send-button").click(function() { 
-    validateForm();    
+$(".send-button").click(function(event) { 
+    validateForm(event);
 });
 
 
