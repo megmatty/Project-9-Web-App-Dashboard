@@ -408,7 +408,6 @@ $.each(newMemberData.reverse(), function(i, item) {
            });
  
 //Validate Message Form & Modals
-
 function validateForm() {
     var messageUser = document.forms["messageForm"]["searchUser"].value;
     var messageContent = document.forms["messageForm"]["message"].value;
@@ -427,8 +426,9 @@ function validateForm() {
 }
 
 $(".send-button").click(function() { 
-    validateForm();    
+    validateForm(event);    
 });
+
 
 //Autocomplete user search text from JSON
     //Used jQuery-UI Autocomplete widget
@@ -453,5 +453,4 @@ $('#user-search').autocomplete({
             $('#user-search').val(ui.item.name);
         }
     });
-
 
