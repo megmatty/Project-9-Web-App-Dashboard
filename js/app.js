@@ -427,7 +427,7 @@ function validateForm() {
 }
 
 $(".send-button").click(function() { 
-    validateForm();    
+    validateForm(event);    
 });
 
 //Autocomplete user search text from JSON
