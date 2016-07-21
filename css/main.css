@@ -637,6 +637,7 @@ button {
         padding-bottom: 20px;
     }
     
+    
     /*traffic chart toggle buttons*/
     
     .button-group {
@@ -745,7 +746,6 @@ button {
         width: 100%;
     }
    
-   #daily-traffic-widget,
    #member-activity-container,
    #settings {
        margin-left: 30px;
@@ -762,6 +762,14 @@ button {
        border-right: 1px solid #eee;
        margin-left: 30px;
        padding-right: 30px;
+   }
+   
+   #daily-traffic-widget-container {
+       margin-left: 30px;
+   }
+   
+   #daily-traffic-widget {
+       padding-right: 15px;
    }
    
    .flex-social-container {
@@ -799,6 +807,7 @@ button {
        padding-left: 30px;
    }
    
+      
    .save-button:hover,
    .send-button:hover {
        background-color: #7cbea1;
