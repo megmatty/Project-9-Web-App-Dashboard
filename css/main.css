@@ -150,8 +150,7 @@ h2 {
     border-radius: 100%;
     width: 8px;
     height: 8px;
-    position: absolute;
-    top: 18px;
+    margin-bottom: 15px;
 }
 
 .user-pic {
@@ -191,7 +190,7 @@ h2 {
 .notify-menu-content {
     position: absolute;
     left: -90px;
-    top: 40px;
+    top: 41px;
     background-color: rgb(249, 249, 249);
     min-width: 175px;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
